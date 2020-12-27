@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Comment
+
+# Inkscape raster to gcode
+# Heiko Schroeter, 12/2020
+# Tested with 15W China Laser, grbl 1.1, arduino nano
+# 1) Create 8-Bit BW PNG picture file
+# 2) Import into Inkscape
+# 3) Extension -> Inkraster2Gcode
+# 4) Set params
+# 5) Create PNG preview and gcode file
+
+Needs png.py
+
+-->
+<!--  -->
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<!-- The name with which the extension appears in the menu -->
+	<name>Raster 2 Laser GCode generator</name>
+	<!-- The ID field must be unique  -->
+	<id>com.schroeter.ink_raster2laser</id>
+	
+	<!-- Dependencies, just the main python script -->
+	<dependency type="executable" location="extensions">ink_raster2laser.py</dependency>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+	    	
+	<!-- Input parameters for the python script that are displayed in the widget created by inkscape-->
+	<!-- Are generated in order of how they are written  -->
+	
+	<!-- Title and description -->
+	<param name="Title" type="description">Raster 2 Laser GCode generator</param>
+	<param name="Description" type="description">
+      created by Heiko Schroeter (idea from 305engineering)
+    </param>
+	<param name="Description" type="description">
+      - Prepare image in 8bit BW; 0=Black, 255=White
+    </param>
+	<param name="Description" type="description">
+      - set grbl $120/$121 to reasonable values i.e. 200
+    </param>
+
+	<!-- Image export options -->
+    <!-- <param name="input_file" type="string"  gui-text="Input PNG file"></param> -->
+	<param name="directory" type="string"  gui-text="Export directory"></param>
+	<param name="filename" type="string"  gui-text="Export File Name (no suffix)"></param>
+
+    <param name="Description" type="description">
+    ------------------------------------------
+    </param>
+
+	<!-- Laser Output Level for Viewing on Dimension Test and Number of Times -->
+	<param name="Laser_Min" type="int" min="1" max="1000" gui-text="Laser Min PWM">25</param>
+	<!-- <param name="Dim_Test_Times" type="int" min="0" max="5" gui-text="How many tests?">0</param> -->
+
+	<!-- Max that the M106 will output the laser -->
+	<param name="Laser_Max" type="int" min="1" max="1000" gui-text="Laser Max PWM">320</param>
+
+	<!-- Black Speed ​​and Movement -->
+	<param name="speed_ON" type="int" min="1" max="5000" gui-text="Engraving speed">1600</param>
+
+	<param name="laseron" type="string"  gui-text="Laser ON Command">M4</param>
+	<param name="laseroff" type="string"  gui-text="Laser OFF Command">M5</param>
+
+    <param name="Description" type="description">
+    ------------------------------------------
+    </param>
+
+	<!-- Picture Width in mm -->
+	<param name="picwidth" type="float" min="1.0" max="20000" gui-text="Picture width X-Direction [mm]">40</param>
+	<!-- Picture Heigth in mm -->
+	<param name="picheigth" type="float" min="1.0" max="20000" gui-text="Picture width Y-Direction [mm]">60</param>
+
+	<!-- Scanline Heigth i.e. Laser width -->
+	<param name="linewidth" type="float" min="0.01" max="2.0" gui-text="Laser Line width">0.2</param>
+		
+	
+
+	<!-- To remove the Antepima direct box, you must replace <effect> with <effect needs-live-preview = "false">  -->
+	<!-- <effect> -->
+	<!-- 	<effect needs-live-preview="false"> -->
+	<effect needs-live-preview="false"> 
+        <object-type>all</object-type>
+		<!-- Where the script will appear in the extensions menu
+              Extensions
+        -->
+        <effects-menu>
+            <submenu name="ink_raster2gcode"/>
+        </effects-menu>
+    </effect>
+    
+	<!-- Python script to run-->
+	<script>
+    	<command reldir="extensions" interpreter="python">ink_raster2laser.py</command>
+    </script>
+</inkscape-extension>
+
+
