@@ -20,3 +20,6 @@ Matrix X-row is laser scan- and burnline
 The gcode file uses a general speed set and varies the burn intensity
 by {S} param. This is needed because when using M4 and M5 the movement
 is shattering due the acceleration and deceleration from burn px to burn px.
+
+Example video:
+https://studio.youtube.com/video/4qWsX7bx_hE
