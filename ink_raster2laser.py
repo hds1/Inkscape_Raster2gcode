@@ -197,7 +197,7 @@ class GcodeExport(inkex.Effect):
                 file_gcode.write('G21 ; Set units to millimeters\n')
 		file_gcode.write('G90 ; Use absolute coordinates\n')
 		file_gcode.write('S0  ; We turn off Laser by Zero PWM\n')
-		file_gcode.write('M4  ; GRBL Laser on with dynamic\n')
+		file_gcode.write(self.options.laseron + '; Laser On\n')
 		file_gcode.write('F' + str(F_G01) + '; Set Speed\n;\n')
 
 		#Creazione del Gcode
@@ -256,7 +256,7 @@ class GcodeExport(inkex.Effect):
 									file_gcode.write('G1 X' + str("%.2f" % float(float(x)/Scala)) + ' S' + gray_gcode + '\n')
 
 	        #Configurazioni finali standard Gcode
-		file_gcode.write('M5; Laser Off\n')
+		file_gcode.write(self.options.laseroff + '; Laser Off\n')
 		file_gcode.write('G00 X0 Y0; home\n')
 		file_gcode.close() #Chiudo il file
 
