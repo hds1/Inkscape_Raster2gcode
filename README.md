@@ -1,4 +1,4 @@
-# ink2raster
+# inkscape raster2gcode
 Extension for Inkscape to convert an 8-Bit BW picture to gcode for laser plotter.
 Plotter used is a 15Watt grbl 1.1 laser.
 
