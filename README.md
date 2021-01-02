@@ -22,8 +22,7 @@ by {S} param. This is needed because when using M4 and M5 the movement
 is shattering due the acceleration and deceleration from burn px to burn px.
 
 Example video:
-https://studio.youtube.com/video/4qWsX7bx_hE
-
+https://m.youtube.com/watch?v=4qWsX7bx_hE
 
 Laser settings i used:
 $0 = 10    (Step pulse time, microseconds)
